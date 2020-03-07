@@ -25,16 +25,18 @@ app.get("/notes", function (reg, res){
     res.sendFile(path.join(__dirname, "public/notes.html"));
 })
 
+///////////API//////////////////////////////////
+
 app.get("/api/notes", function (req, res) {/////GET API
     res.json(db);
 });
 
 app.post("api/notes", function (req, res) { /////POST API
-    var newNote = req.body;
+    const newNote = req.body;
 
     console.log(newNote);
 
-    notes.push(newNote);
+    //notes.push(newNote);
     res.json(newNotes);
 });
 

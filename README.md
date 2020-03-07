@@ -1,3 +1,5 @@
+![screenshot of Note Taker App](IMG/Mo-note-app.png)
+
 # Notetaker-App
 
 ## Description 
@@ -10,3 +12,4 @@
 
 ## Future Development (Ice Box)
 
+* Continue adding more functionality and features to the app.  Currently I've delivered the Most Viable Product (MVP) to the consumer.  We will continue to work in a beta environment and have all of the functionilty in place in time for the next portfolio update
