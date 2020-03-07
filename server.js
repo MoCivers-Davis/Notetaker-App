@@ -1,38 +1,49 @@
 const express = require("express");
-const fs = require("fs"); 
+const fs = require("fs");
 
-const path = require("path"); ///We don't really need this to make our app work
+const path = require("path");
 
-const app = express();  ////Makes Express start the app server
-const PORT = process.env.PORT || 3000; ///The Port we will be running
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-//////////////////SET UP THE EXPRESS APP TO HANDLE DATA PARSING
-app.use(express.urlencoded({ extended: true }));//////This allows us to talk in JSON
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//app.use(epress.static("public"));
 app.use(express.static('public'))
 
-//////////FRIDAY ---------letdb = require("./db/db.json");
+let db = require("./db/db.json");
 
-/////////////////TALKS TO THE HOME PAGE/////////////
-app.get("/", function (req, res) { /////TAlks to the homepage////////
+
+////////////////////HTML///////////////////
+
+app.get("/", function (req, res) {/////HOME PAGE
     res.sendFile(path.join(__dirname, "public/index.html"));
-    //res.end("Welcome to my Note taking app");///This is just temporary to see if the app consoles this in the browser
 });
-///////////////FRIDAY ---------------- let db 
-////////////////////////HTML//////////////////////////////////////////
-app.get("/notes", function(req, res) {//We want to do another route to tie in the notes page.  Finish watching the 2nd video.
-res.sendFile(path.join(__dirname, "public/notes.html"))
+
+app.get("/notes", function (reg, res){
+    res.sendFile(path.join(__dirname, "public/notes.html"));
 })
-////////////////////////END OF ROUTES/////////////////////////////////////
 
-//On DB JSON page we may need an array////I overheard the instructor telling this to Chris but I didn't hear the entire conversation.
+app.get("/api/notes", function (req, res) {/////GET API
+    res.json(db);
+});
+
+app.post("api/notes", function (req, res) { /////POST API
+    var newNote = req.body;
+
+    console.log(newNote);
+
+    notes.push(newNote);
+    res.json(newNotes);
+});
 
 
+app.get("/notes", function (req, res) {////NOTES HOMEPAGE
+    res.sendFile(path.join(__dirname, "public/notes.html"))
+})
 
 
-////////////////////////////////////////////////////////
 app.listen(PORT, function () {
     console.log("App listening on Port " + PORT);
 })
